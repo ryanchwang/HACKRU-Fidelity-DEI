@@ -5,6 +5,11 @@ public class Player
     private String name;     
     private double balance;  
 
+    public Player(){
+        name = null;
+        balance = 0;
+    }
+
     public Player(String name, double balance) 
     {
         this.name = name;
