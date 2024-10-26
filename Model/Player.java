@@ -9,7 +9,18 @@ public class Player
         name = null;
         balance = 0;
     }
+    
+    private boolean isFolded;
 
+    public void setFolded(boolean folded) 
+    {
+        this.isFolded = folded;
+    }
+    
+    public boolean isFolded() 
+    {
+        return isFolded;
+    }
     public Player(String name, double balance) 
     {
         this.name = name;
