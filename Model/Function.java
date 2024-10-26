@@ -54,10 +54,13 @@ public class Function {
 
     public void call(Player player, double amountToCall)
     {
-        if (player.getBalance() >= amountToCall) {
+        if (player.getBalance() >= amountToCall) 
+        {
             player.setBalance(player.getBalance() - amountToCall);
             System.out.println(player.getName() + " calls $" + amountToCall);
-        } else {
+        } 
+        else 
+        {
             System.out.println("Insufficient balance to call.");
         }
     }
