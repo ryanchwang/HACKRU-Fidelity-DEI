@@ -13,7 +13,7 @@ public class Card {
     {
         return suit;
     }
-    public void setSuit()
+    public void setSuit(int suit)
     {
         this.suit = suit;
     }
@@ -21,7 +21,7 @@ public class Card {
     {
         return value;
     }
-    public void setValue()
+    public void setValue(int value)
     {
         this.value = value;
     }

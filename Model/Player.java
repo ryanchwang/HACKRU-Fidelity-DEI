@@ -1,34 +1,34 @@
 package Model;
 
-public class Player
+public class Player 
 {
-    private String name;
-    private double balance;
+    private String name;     
+    private double balance;  
 
-    public Player(String name, double balance)
+    public Player(String name, double balance) 
     {
         this.name = name;
         this.balance = balance;
     }
 
-    public String getName()
+    public String getName() 
     {
         return name;
     }
 
-    public void setName(String name)
+    public void setName(String name) 
     {
         this.name = name;
     }
 
-    public double getBalance()
+    public double getBalance() 
     {
         return balance;
     }
 
-    public void setBalance(double balance)
+    public void setBalance(double balance) 
     {
-        this.balance = balance;
+        this.balance = balance; 
     }
 
     @Override //to override parent previous toString
