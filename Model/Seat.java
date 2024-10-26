@@ -4,15 +4,25 @@ public class Seat {
     private boolean fold;
     private Card[] hand;
     private double totalBet;
+    private Seat next;
 
     public Seat(){
         this.player = null;
         fold = false;
         hand = null;
         totalBet = 0;
+        next = null;
     }
 
-    public void setPerson(Player player){
+    public void setNext(Seat next){
+        this.next = next;
+    }
+
+    public Seat getNext(){
+        return next;
+    }
+
+    public void setPlayer(Player player){
         this.player = player;
     }
 
@@ -51,6 +61,10 @@ public class Seat {
             totalBet += bet;
             return true;
         }
+    }
+
+    public double getTotalBet(){
+        return totalBet;
     }
 
     private void printMessage(String message){
