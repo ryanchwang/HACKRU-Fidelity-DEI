@@ -67,7 +67,7 @@ public class Function {
 
     public void check(Player player)
     {
-        System.out.println(player.getName() + "checks.")
+        System.out.println(player.getName() + "checks.");
     }
 
     public void leave(Player player, ArrayList<Player> players)
