@@ -42,7 +42,7 @@ public class Table {
         {
             player.setBalance(player.getBalance() - amount);
             System.out.println(player.getName() + " raises $" + amount);
-            pot += (amount;
+            pot += (amount+getCurrentBet);
         } 
         else 
         {
