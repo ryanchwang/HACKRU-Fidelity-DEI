@@ -2,8 +2,9 @@ package Model;
 public class Seat {
     private Player player;
     private boolean fold;
-    private Card[] hand;
+    private Hand hand;
     private double totalBet;
+    private double currentBet;
     private Seat next;
 
     public Seat(){
@@ -11,6 +12,7 @@ public class Seat {
         fold = false;
         hand = null;
         totalBet = 0;
+        currentBet = 0;
         next = null;
     }
 
@@ -38,13 +40,11 @@ public class Seat {
         return fold;
     }
 
-    public void setHand(Card first, Card second){
-        hand = new Card[2];
-        hand[0] = first;
-        hand[1] = second;
+    public void setHand(Hand hand){
+        this.hand = hand;
     }
 
-    public Card[] getHand(){
+    public Hand getHand(){
         return hand;
     }
 
@@ -58,9 +58,32 @@ public class Seat {
             playerBalance -= bet;
             printMessage("Placed bet");
             player.setBalance(playerBalance);
-            totalBet += bet;
+            currentBet += bet;
             return true;
         }
+    }
+
+    public void setCurrentBet(double bet){
+        // in case it is useful somehow
+        currentBet = bet;
+    }
+
+    public void addCurrentBet(double bet){
+        // Most likely won't use, but just in case it's useful for you
+        currentBet += bet;
+    }
+
+    public double getCurrentBet(){
+        return currentBet;
+    }
+
+    public void setTotalBet(double bet){
+        // Most likely won't use either
+        totalBet = bet;
+    }
+
+    public void addTotalBet(double bet){
+        totalBet += bet;
     }
 
     public double getTotalBet(){

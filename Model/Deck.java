@@ -1,3 +1,5 @@
+package Model;
+
 public class Deck{
     private int numCards;
     private Card[] deck;
