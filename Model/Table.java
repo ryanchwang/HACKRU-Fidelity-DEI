@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import org.w3c.dom.Node;
 
 public class Table {
@@ -36,13 +37,15 @@ public class Table {
         System.out.println(player.getName() + " has left the game.");
         players.remove(player);
     }
-    public void raise(Player player, double amount) 
+
+
+    public void raise(Player player, double amount, Seat seat) 
     {
-        if (player.getBalance() >= amount && amount>(2*seat.getCurrentBet)) 
+        if (player.getBalance() >= amount && amount>(2*seat.getCurrentBet())) 
         {
             player.setBalance(player.getBalance() - amount);
             System.out.println(player.getName() + " raises $" + amount);
-            pot += (amount+seat.getCurrentBet);
+            pot += (amount+seat.getCurrentBet());
         } 
         else 
         {
@@ -50,9 +53,9 @@ public class Table {
         }
     }
 
-    public void call(Player player, double amountToCall)
+    public void call(Player player, double amountToCall, Seat seat)
     {
-        if (player.getBalance() >= amountToCall && amountToCall==amount) 
+        if (player.getBalance() >= amountToCall && amountToCall== seat.getCurrentBet()) 
         {
             player.setBalance(player.getBalance() - amountToCall);
             System.out.println(player.getName() + " calls $" + amountToCall);
@@ -63,6 +66,8 @@ public class Table {
             System.out.println("Insufficient balance to call.");
         }
     }
+
+
     public void check(Player player)
     {
         System.out.println(player.getName() + "checks.");
