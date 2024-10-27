@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Dice Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        #nameInput, #gameArea {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #gameArea {
+            display: none;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #messages {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .message {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplayer Dice Game</h1>
+        <div id="nameInput">
+            <input type="text" id="playerName" placeholder="Enter your name">
+            <button onclick="connectToGame()">Join Game</button>
+        </div>
+        <div id="gameArea">
+            <div id="messages"></div>
+            <button onclick="rollDice()">Roll Dice</button>
+        </div>
+    </div>
+
+    <script>
+        let socket;
+        
+        function connectToGame() {
+            const playerName = document.getElementById("playerName").value.trim();
+            if (!playerName) {
+                alert("Please enter your name");
+                return;
+            }
+
+            // Initialize WebSocket connection
+            socket = new WebSocket("ws://localhost:8080/game");
+
+            socket.onopen = function() {
+                // Hide the name input area and show the game area
+                document.getElementById("nameInput").style.display = "none";
+                document.getElementById("gameArea").style.display = "block";
+
+                // Send player name to the server
+                socket.send(playerName);
+            };
+
+            socket.onmessage = function(event) {
+                displayMessage(event.data);
+            };
+
+            socket.onclose = function() {
+                alert("Connection closed by the server.");
+            };
+
+            socket.onerror = function(error) {
+                console.error("WebSocket error:", error);
+                alert("An error occurred. Please try again.");
+            };
+        }
+
+        function rollDice() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send("ROLL");
+            } else {
+                alert("Connection to the server is not active.");
+            }
+        }
+
+        function displayMessage(message) {
+            const messagesDiv = document.getElementById("messages");
+            const newMessage = document.createElement("div");
+            newMessage.classList.add("message");
+            newMessage.textContent = message;
+
+            messagesDiv.appendChild(newMessage);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
