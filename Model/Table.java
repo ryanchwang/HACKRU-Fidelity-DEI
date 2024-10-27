@@ -38,11 +38,11 @@ public class Table {
     }
     public void raise(Player player, double amount) 
     {
-        if (player.getBalance() >= amount && amount>(2*getCurrentBet)) 
+        if (player.getBalance() >= amount && amount>(2*seat.getCurrentBet)) 
         {
             player.setBalance(player.getBalance() - amount);
             System.out.println(player.getName() + " raises $" + amount);
-            pot += (amount+getCurrentBet);
+            pot += (amount+seat.getCurrentBet);
         } 
         else 
         {
