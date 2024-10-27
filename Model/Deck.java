@@ -1,15 +1,7 @@
 package Model;
-<<<<<<< Updated upstream
-
-public class Deck{
-    private int numCards;
-    private Card[] deck;
-=======
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
->>>>>>> Stashed changes
-
 public class Deck {
     private HashSet<Card> deck;
 
