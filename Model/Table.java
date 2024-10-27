@@ -31,6 +31,44 @@ public class Table {
         return dealer.getNext();
 
     }
+    public void leave(Player player, ArrayList<Player> players)
+    {
+        System.out.println(player.getName() + " has left the game.");
+        players.remove(player);
+    }
+    public void raise(Player player, double amount) 
+    {
+        if (player.getBalance() >= amount && amount>(2*getCurrentBet)) 
+        {
+            player.setBalance(player.getBalance() - amount);
+            System.out.println(player.getName() + " raises $" + amount);
+            pot += (amount;
+        } 
+        else 
+        {
+            System.out.println("Insufficient balance to raise.");
+        }
+    }
+
+    public void call(Player player, double amountToCall)
+    {
+        if (player.getBalance() >= amountToCall && amountToCall==amount) 
+        {
+            player.setBalance(player.getBalance() - amountToCall);
+            System.out.println(player.getName() + " calls $" + amountToCall);
+            pot += amountToCall;
+        } 
+        else 
+        {
+            System.out.println("Insufficient balance to call.");
+        }
+    }
+    public void check(Player player)
+    {
+        System.out.println(player.getName() + "checks.");
+    }
+
+
 
     public int calculatePot() {
         double max = 0;
